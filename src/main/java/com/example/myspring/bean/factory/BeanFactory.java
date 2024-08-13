@@ -27,4 +27,12 @@ public interface BeanFactory {
      */
     public Object getBean(String beanName) throws BeansException;
 
+    /**
+     * 接口提供有参构造函数的bean获取方法
+     * @param beanName
+     * @param args
+     * @return
+     */
+    public Object getBean(String beanName,Object... args) throws BeansException;
+
 }

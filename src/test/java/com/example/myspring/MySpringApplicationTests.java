@@ -52,12 +52,23 @@ class MySpringApplicationTests {
         User user_singleton = (User)beanFactory.getBean("user");
         user.queryUser();
 
-        PriorityQueue<Object> queue = new PriorityQueue(new Comparator<Object>() {
-            @Override
-            public int compare(Object o1, Object o2) {
-                return 0;
-            }
-        });
+    }
+
+    /**
+     * 测试(含构造函数)通过策略模式选择不同的构造函数进行bean的定义、注册、获取
+     */
+    @Test
+    void test04(){
+        // 定义bean
+        BeanDefinition beanDefinition = new BeanDefinition(User.class);
+
+        // 初始化工厂,注入bean
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+        beanFactory.registerBeanDefinition("user", beanDefinition);
+
+        // 获取bean
+        User bean = (User)beanFactory.getBean("user", "张三");
+        bean.queryUser();
     }
 
 
