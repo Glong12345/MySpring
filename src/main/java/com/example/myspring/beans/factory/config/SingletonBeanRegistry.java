@@ -1,4 +1,4 @@
-package com.example.myspring.bean.factory.config;
+package com.example.myspring.beans.factory.config;
 
 /**
  * 单例bean注册接口

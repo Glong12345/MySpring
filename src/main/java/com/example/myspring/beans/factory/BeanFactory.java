@@ -1,10 +1,6 @@
-package com.example.myspring.bean.factory;
+package com.example.myspring.beans.factory;
 
-import com.example.myspring.bean.BeansException;
-
-import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.ConcurrentHashMap;
+import com.example.myspring.beans.BeansException;
 
 /**
  * BeanFactory，代表了 Bean 对象的工厂，可以存放 Bean 定义到 Map 中以及获取。
@@ -34,5 +30,10 @@ public interface BeanFactory {
      * @return
      */
     public Object getBean(String beanName,Object... args) throws BeansException;
+
+    /**
+     * 根据类型获取bean
+     */
+    <T> T getBean(String beanName,Class<T> requiredType) throws BeansException;
 
 }

@@ -1,4 +1,4 @@
-package com.example.myspring.bean;
+package com.example.myspring.beans;
 
 /**
  * 定义一个自定义异常

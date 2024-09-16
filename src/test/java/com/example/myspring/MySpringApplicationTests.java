@@ -1,15 +1,12 @@
 package com.example.myspring;
 
-import com.example.myspring.bean.PropertyValue;
-import com.example.myspring.bean.PropertyValues;
-import com.example.myspring.bean.factory.config.BeanDefinition;
-import com.example.myspring.bean.factory.config.BeanReference;
-import com.example.myspring.bean.factory.support.DefaultListableBeanFactory;
+import com.example.myspring.beans.PropertyValue;
+import com.example.myspring.beans.PropertyValues;
+import com.example.myspring.beans.factory.config.BeanDefinition;
+import com.example.myspring.beans.factory.config.BeanReference;
+import com.example.myspring.beans.factory.support.DefaultListableBeanFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.Comparator;
-import java.util.PriorityQueue;
 
 @SpringBootTest
 class MySpringApplicationTests {

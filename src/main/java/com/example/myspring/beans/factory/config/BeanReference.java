@@ -1,4 +1,4 @@
-package com.example.myspring.bean.factory.config;
+package com.example.myspring.beans.factory.config;
 
 /**
  * bean的引用

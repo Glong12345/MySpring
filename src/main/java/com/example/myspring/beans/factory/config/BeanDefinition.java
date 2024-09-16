@@ -1,6 +1,6 @@
-package com.example.myspring.bean.factory.config;
+package com.example.myspring.beans.factory.config;
 
-import com.example.myspring.bean.PropertyValues;
+import com.example.myspring.beans.PropertyValues;
 
 /**
  * BeanDefinition，用于定义 Bean 实例化信息，最开始的实现是以一个 Object 存放对象

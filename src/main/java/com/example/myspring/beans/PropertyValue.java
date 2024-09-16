@@ -1,4 +1,4 @@
-package com.example.myspring.bean;
+package com.example.myspring.beans;
 
 /**
  * 配置属性值（K-V结构）

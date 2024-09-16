@@ -1,13 +1,12 @@
-package com.example.myspring.bean.factory.support;
+package com.example.myspring.beans.factory.support;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.example.myspring.bean.BeansException;
-import com.example.myspring.bean.PropertyValue;
-import com.example.myspring.bean.PropertyValues;
-import com.example.myspring.bean.factory.config.BeanDefinition;
-import com.example.myspring.bean.factory.config.BeanReference;
-import com.example.myspring.bean.factory.support.instantiation.CglibSubclassingInstantiationStrategy;
-import com.example.myspring.bean.factory.support.instantiation.SimpleInstantiationStrategy;
+import com.example.myspring.beans.BeansException;
+import com.example.myspring.beans.PropertyValue;
+import com.example.myspring.beans.PropertyValues;
+import com.example.myspring.beans.factory.config.BeanDefinition;
+import com.example.myspring.beans.factory.config.BeanReference;
+import com.example.myspring.beans.factory.support.instantiation.SimpleInstantiationStrategy;
 
 import java.lang.reflect.Constructor;
 

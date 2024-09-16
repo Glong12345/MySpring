@@ -1,8 +1,8 @@
-package com.example.myspring.bean.factory.support.instantiation;
+package com.example.myspring.beans.factory.support.instantiation;
 
-import com.example.myspring.bean.BeansException;
-import com.example.myspring.bean.factory.config.BeanDefinition;
-import com.example.myspring.bean.factory.support.InstantiationStrategy;
+import com.example.myspring.beans.BeansException;
+import com.example.myspring.beans.factory.config.BeanDefinition;
+import com.example.myspring.beans.factory.support.InstantiationStrategy;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

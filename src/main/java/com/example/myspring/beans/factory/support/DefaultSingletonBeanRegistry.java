@@ -1,6 +1,6 @@
-package com.example.myspring.bean.factory.support;
+package com.example.myspring.beans.factory.support;
 
-import com.example.myspring.bean.factory.config.SingletonBeanRegistry;
+import com.example.myspring.beans.factory.config.SingletonBeanRegistry;
 
 import java.util.HashMap;
 import java.util.Map;

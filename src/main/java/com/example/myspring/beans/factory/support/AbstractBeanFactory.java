@@ -1,8 +1,8 @@
-package com.example.myspring.bean.factory.support;
+package com.example.myspring.beans.factory.support;
 
-import com.example.myspring.bean.factory.BeanFactory;
-import com.example.myspring.bean.BeansException;
-import com.example.myspring.bean.factory.config.BeanDefinition;
+import com.example.myspring.beans.factory.BeanFactory;
+import com.example.myspring.beans.BeansException;
+import com.example.myspring.beans.factory.config.BeanDefinition;
 
 /**
  * 抽象类定义模板方法,定义通用的bean工厂，要实现bean工厂接口，同时要继承bean的单例注册类，便于注册和获取bean对象
@@ -20,6 +20,11 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
     public Object getBean(String beanName, Object... args) throws BeansException {
         // 这里相当于有参的getBean方法
         return doGetBean(beanName, args);
+    }
+
+    @Override
+    public <T> T getBean(String name, Class<T> requiredType) throws BeansException {
+        return (T) getBean(name);
     }
 
     /**
