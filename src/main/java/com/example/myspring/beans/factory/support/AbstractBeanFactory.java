@@ -3,11 +3,19 @@ package com.example.myspring.beans.factory.support;
 import com.example.myspring.beans.factory.BeanFactory;
 import com.example.myspring.beans.BeansException;
 import com.example.myspring.beans.factory.config.BeanDefinition;
+import com.example.myspring.beans.factory.config.BeanPostProcessor;
+import com.example.myspring.beans.factory.config.ConfigurableBeanFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 抽象类定义模板方法,定义通用的bean工厂，要实现bean工厂接口，同时要继承bean的单例注册类，便于注册和获取bean对象
  */
-public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
+public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableBeanFactory {
+
+    /** BeanPostProcessors to apply in createBean */
+    private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<BeanPostProcessor>();
 
     // getBean方法发生了重载，抽取出公共部分，通过doGetBean方法实现
     @Override
@@ -64,4 +72,19 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
      * @return
      */
     protected abstract Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args);
+
+
+    @Override
+    public void addBeanPostProcessor(BeanPostProcessor beanPostProcessor) {
+        this.beanPostProcessors.remove(beanPostProcessor);
+        this.beanPostProcessors.add(beanPostProcessor);
+    }
+
+    /**
+     * Return the list of BeanPostProcessors that will get applied
+     * to beans created with this factory.
+     */
+    public List<BeanPostProcessor> getBeanPostProcessors() {
+        return this.beanPostProcessors;
+    }
 }

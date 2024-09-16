@@ -50,6 +50,13 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
         this.loadBeanDefinitions(resource);
     }
 
+    @Override
+    public void loadBeanDefinitions(String... locations) throws BeansException {
+        for (String location : locations) {
+            loadBeanDefinitions(location);
+        }
+    }
+
     /**
      * 根据不同的资源类型进行解析
      * 主要是对xml的读取 XmlUtil.readXML(inputStream) 和元素 Element 解析。在解析的过程中通过循环操作，以此获取 Bean 配置以及配置中的 id、name、class、value、ref 信息。

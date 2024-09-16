@@ -1,4 +1,4 @@
-package com.example.myspring.beans.factory.xml;
+package com.example.myspring.beans.factory;
 
 import com.example.myspring.beans.BeansException;
 import com.example.myspring.beans.factory.ListableBeanFactory;
@@ -14,4 +14,6 @@ import com.example.myspring.beans.factory.config.ConfigurableBeanFactory;
 public interface ConfigurableListableBeanFactory extends ListableBeanFactory, AutowireCapableBeanFactory, ConfigurableBeanFactory {
 
     BeanDefinition getBeanDefinition(String beanName) throws BeansException;
+
+    void preInstantiateSingletons() throws BeansException;
 }

@@ -2,7 +2,7 @@ package com.example.myspring.beans.factory.support;
 
 import com.example.myspring.beans.BeansException;
 import com.example.myspring.beans.factory.config.BeanDefinition;
-import com.example.myspring.beans.factory.xml.ConfigurableListableBeanFactory;
+import com.example.myspring.beans.factory.ConfigurableListableBeanFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,5 +53,10 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
     @Override
     public String[] getBeanDefinitionNames() {
         return beanDefinitionMap.keySet().toArray(new String[0]);
+    }
+
+    @Override
+    public void preInstantiateSingletons() throws BeansException {
+        beanDefinitionMap.keySet().forEach(this::getBean);
     }
 }
