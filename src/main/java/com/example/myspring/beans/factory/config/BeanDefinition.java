@@ -18,6 +18,14 @@ public class BeanDefinition {
      */
     private PropertyValues propertyValues;
 
+    /**
+     * 新增 initMethodName 和 destroyMethodName，用于存储bean的初始化方法和销毁方法
+     * 这两个属性是为了在 spring.xml 配置的 Bean 对象中，可以配置 init-method="initDataMethod" destroy-method="destroyDataMethod" 操作
+     */
+    private String initMethodName;
+
+    private String destroyMethodName;
+
     public BeanDefinition(Class beanClass) {
         this.beanClass = beanClass;
     }
@@ -46,5 +54,21 @@ public class BeanDefinition {
 
     public void setPropertyValues(PropertyValues propertyValues) {
         this.propertyValues = propertyValues;
+    }
+
+    public String getInitMethodName() {
+        return initMethodName;
+    }
+
+    public void setInitMethodName(String initMethodName) {
+        this.initMethodName = initMethodName;
+    }
+
+    public String getDestroyMethodName() {
+        return destroyMethodName;
+    }
+
+    public void setDestroyMethodName(String destroyMethodName) {
+        this.destroyMethodName = destroyMethodName;
     }
 }
