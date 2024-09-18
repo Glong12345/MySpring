@@ -5,6 +5,7 @@ import com.example.myspring.beans.BeansException;
 import com.example.myspring.beans.factory.config.BeanDefinition;
 import com.example.myspring.beans.factory.config.BeanPostProcessor;
 import com.example.myspring.beans.factory.config.ConfigurableBeanFactory;
+import com.example.myspring.util.ClassUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,9 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 
     /** BeanPostProcessors to apply in createBean */
     private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<BeanPostProcessor>();
+
+    /** ClassLoader to resolve bean class names with, if necessary */
+    private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
 
     // getBean方法发生了重载，抽取出公共部分，通过doGetBean方法实现
     @Override
@@ -86,5 +90,13 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
      */
     public List<BeanPostProcessor> getBeanPostProcessors() {
         return this.beanPostProcessors;
+    }
+
+    /**
+     * 获取bean的类加载器
+     * @return
+     */
+    public ClassLoader getBeanClassLoader() {
+        return beanClassLoader;
     }
 }
