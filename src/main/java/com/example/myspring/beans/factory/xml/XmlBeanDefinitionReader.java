@@ -19,7 +19,7 @@ import java.io.InputStream;
 
 public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
-    public XmlBeanDefinitionReader(BeanDefinitionRegistry registry){
+    public XmlBeanDefinitionReader(BeanDefinitionRegistry registry) {
         super(registry);
     }
 
@@ -29,10 +29,10 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
     @Override
     public void loadBeanDefinitions(Resource resource) throws BeansException {
-        try (InputStream inputStream = resource.getInputStream()){
+        try (InputStream inputStream = resource.getInputStream()) {
             // 根据不同的资源类型进行解析
             doLoadBeanDefinitions(inputStream);
-        } catch (IOException | ClassNotFoundException e){
+        } catch (IOException | ClassNotFoundException e) {
             throw new BeansException("IOException parsing XML document from " + resource, e);
         }
     }
@@ -60,6 +60,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
     /**
      * 根据不同的资源类型进行解析
      * 主要是对xml的读取 XmlUtil.readXML(inputStream) 和元素 Element 解析。在解析的过程中通过循环操作，以此获取 Bean 配置以及配置中的 id、name、class、value、ref 信息。
+     *
      * @param inputStream
      * @throws ClassNotFoundException
      */
@@ -84,6 +85,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
             String initMethod = bean.getAttribute("init-method");
             String destroyMethodName = bean.getAttribute("destroy-method");
 
+            // 新增解析 bean 的 scope 属性
+            String beanScope = bean.getAttribute("scope");
+
             // 获取 Class，方便获取类中的名称
             Class<?> clazz = Class.forName(className);
             // 优先级 id > name
@@ -97,6 +101,10 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
             // 设置 init-method、destroy-method
             beanDefinition.setInitMethodName(initMethod);
             beanDefinition.setDestroyMethodName(destroyMethodName);
+            // 设置 scope
+            if (StrUtil.isNotEmpty(beanScope)) {
+                beanDefinition.setScope(beanScope);
+            }
 
             // 读取属性并填充
             for (int j = 0; j < bean.getChildNodes().getLength(); j++) {

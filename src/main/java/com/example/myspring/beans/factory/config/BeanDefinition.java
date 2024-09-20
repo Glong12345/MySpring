@@ -9,6 +9,19 @@ import com.example.myspring.beans.PropertyValues;
 public class BeanDefinition {
 
     /**
+     * 新增 scope 属性，用于定义 Bean 的作用域，单例模式、原型模式 (默认是单例)
+     */
+    String SCOPE_SINGLETON = ConfigurableBeanFactory.SCOPE_SINGLETON;
+
+    String SCOPE_PROTOTYPE = ConfigurableBeanFactory.SCOPE_PROTOTYPE;
+
+    private String scope = SCOPE_SINGLETON;
+
+    private boolean singleton = true;
+
+    private boolean prototype = false;
+
+    /**
      * 从Object换成了Class，即控制反转的思想，将创建对象的权利交给Spring容器，而不是由调用者创建
      */
     private Class beanClass;
@@ -70,5 +83,28 @@ public class BeanDefinition {
 
     public void setDestroyMethodName(String destroyMethodName) {
         this.destroyMethodName = destroyMethodName;
+    }
+
+
+    /**
+     * 新增 scope 属性的 getter 和 setter 方法
+     * @return
+     */
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
+        this.singleton = this.SCOPE_SINGLETON.equals(scope);
+        this.prototype = this.SCOPE_PROTOTYPE.equals(scope);
+    }
+
+    public boolean isSingleton() {
+        return singleton;
+    }
+
+    public boolean isPrototype() {
+        return prototype;
     }
 }
