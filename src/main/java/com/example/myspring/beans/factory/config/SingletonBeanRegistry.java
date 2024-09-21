@@ -18,4 +18,12 @@ public interface SingletonBeanRegistry {
      */
     void destroySingletons();
 
+
+    /**
+     * 注册单例bean
+     * @param beanName
+     * @param singletonObject
+     */
+    void registerSingleton(String beanName, Object singletonObject);
+
 }

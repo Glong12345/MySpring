@@ -1,6 +1,8 @@
 package com.example.myspring.context;
 
+import com.example.myspring.beans.factory.HierarchicalBeanFactory;
 import com.example.myspring.beans.factory.ListableBeanFactory;
+import com.example.myspring.core.io.ResourceLoader;
 
 /**
  * Central interface to provide configuration for an application.
@@ -9,5 +11,5 @@ import com.example.myspring.beans.factory.ListableBeanFactory;
  *
  * 应用上下文
  */
-public interface ApplicationContext extends ListableBeanFactory {
+public interface ApplicationContext extends ListableBeanFactory, HierarchicalBeanFactory, ResourceLoader, ApplicationEventPublisher {
 }
