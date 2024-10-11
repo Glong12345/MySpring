@@ -12,6 +12,8 @@ import org.aopalliance.intercept.MethodInterceptor;
  * <p>主要是用于把代理、拦截、匹配的各项属性包装到一个类中，方便在 Proxy 实现类进行使用。这和你的业务开发中包装入参是一个道理</p>
  */
 public class AdvisedSupport {
+    // ProxyConfig
+    private boolean proxyTargetClass = false; // 是否代理目标类
 
     // 被代理的目标对象
     private TargetSource targetSource;
@@ -19,6 +21,14 @@ public class AdvisedSupport {
     private MethodInterceptor methodInterceptor;
     // 方法匹配器(检查目标方法是否符合通知条件)
     private MethodMatcher methodMatcher;
+
+    public boolean isProxyTargetClass() {
+        return proxyTargetClass;
+    }
+
+    public void setProxyTargetClass(boolean proxyTargetClass) {
+        this.proxyTargetClass = proxyTargetClass;
+    }
 
     public TargetSource getTargetSource() {
         return targetSource;
