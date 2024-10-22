@@ -41,9 +41,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
                 return bean;
             }
 
-//            bean = beanDefinition.getBeanClass().newInstance();
-//            考虑到构造器参数，需要通过构造器来实例化对象
+//          bean = beanDefinition.getBeanClass().newInstance();
+//          考虑到构造器参数，需要通过构造器来实例化对象
             bean = createBeanInstance(beanDefinition, beanName, args);
+
+            // 在设置 Bean 属性之前，允许 BeanPostProcessor 修改属性值
+            applyBeanPostProcessorsBeforeApplyingPropertyValues(beanName, bean, beanDefinition);
 
             // 设置bean的属性值
             applyPropertyValues(beanName, bean, beanDefinition);
@@ -63,6 +66,26 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
             addSingleton(beanName, bean);
         }
         return bean;
+    }
+
+    /**
+     * 在设置 Bean 属性之前，允许 BeanPostProcessor 修改属性值
+     * @param beanName
+     * @param bean
+     * @param beanDefinition
+     */
+    protected void applyBeanPostProcessorsBeforeApplyingPropertyValues(String beanName, Object bean, BeanDefinition beanDefinition){
+        for (BeanPostProcessor beanPostProcessor : getBeanPostProcessors()) {
+            if (beanPostProcessor instanceof InstantiationAwareBeanPostProcessor){
+                PropertyValues pvs = ((InstantiationAwareBeanPostProcessor) beanPostProcessor).postProcessPropertyValues(beanDefinition.getPropertyValues(), bean, beanName);
+                if (null != pvs){
+                    for (PropertyValue propertyValue : pvs.getPropertyValues()) {
+                        beanDefinition.getPropertyValues().addPropertyValue(propertyValue);
+                    }
+                }
+            }
+        }
+
     }
 
     private void registerDisposableBeanIfNecessary(String beanName, Object bean, BeanDefinition beanDefinition) {
